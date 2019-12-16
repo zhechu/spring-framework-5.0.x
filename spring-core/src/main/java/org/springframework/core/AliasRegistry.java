@@ -22,6 +22,8 @@ package org.springframework.core;
  *
  * @author Juergen Hoeller
  * @since 2.5.2
+ *
+ * 定义对 alias 的 CRUD 操作
  */
 public interface AliasRegistry {
 

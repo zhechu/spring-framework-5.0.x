@@ -36,6 +36,8 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableListableBeanFactory#getBeanDefinition
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ *
+ * 承载 bean 定义的接口，有三种实现，RootBeanDefinition、ChildBeanDefinition 和 GenericBeanDefinition
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
