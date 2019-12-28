@@ -16,14 +16,13 @@
 
 package org.springframework.beans.factory.xml;
 
-import java.io.IOException;
-
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
+import java.io.IOException;
 
 /**
  * {@link EntityResolver} implementation that delegates to a {@link BeansDtdResolver}
@@ -76,7 +75,17 @@ public class DelegatingEntityResolver implements EntityResolver {
 		this.schemaResolver = schemaResolver;
 	}
 
-
+	/**
+	 * 加载 DTD 类型的 {@link BeansDtdResolver} 的 resolveEntity 是直接截取 systemId 最后的 xx.dtd 然后到
+	 * 当前路径下寻找，而加载 XSD 类型的 {@link PluggableSchemaResolver} 类的 resolveEntity 是默认到
+	 * META-INF/spring.schemas 文件中找到 systemId 所对应的 XSD 文件并加载
+	 *
+	 * @param publicId
+	 * @param systemId
+	 * @return org.xml.sax.InputSource
+	 * @author lingyuwang
+	 * @date 2019/12/28 17:45
+	 */
 	@Override
 	@Nullable
 	public InputSource resolveEntity(@Nullable String publicId, @Nullable String systemId)
@@ -84,9 +93,11 @@ public class DelegatingEntityResolver implements EntityResolver {
 
 		if (systemId != null) {
 			if (systemId.endsWith(DTD_SUFFIX)) {
+				// 若是 dtd 则从这里解析
 				return this.dtdResolver.resolveEntity(publicId, systemId);
 			}
 			else if (systemId.endsWith(XSD_SUFFIX)) {
+				// 通过调用 META-INF/spring.schemas 解析
 				return this.schemaResolver.resolveEntity(publicId, systemId);
 			}
 		}

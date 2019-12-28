@@ -16,6 +16,8 @@
 
 package org.springframework.core.io;
 
+import org.springframework.lang.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +26,6 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-import org.springframework.lang.Nullable;
-
 /**
  * Interface for a resource descriptor that abstracts from the actual
  * type of underlying resource, such as a file or class path resource.
@@ -33,6 +33,10 @@ import org.springframework.lang.Nullable;
  * <p>An InputStream can be opened for every resource if it exists in
  * physical form, but a URL or File handle can just be returned for
  * certain resources. The actual behavior is implementation-specific.
+ *
+ * <p>抽象所有 Spring 内部使用到的底层资源：File、URL、Classpath等
+ * 对不同来源的资源文件都有相应的实现：文件{@link FileSystemResource}、类路径资源{@link ClassPathResource}、
+ * URL资源{@link UrlResource}、InputStream资源{@link InputStreamSource}和字节数组资源{@link ByteArrayResource}等
  *
  * @author Juergen Hoeller
  * @since 28.12.2003
@@ -169,6 +173,9 @@ public interface Resource extends InputStreamSource {
 	 * to be used for error output when working with the resource.
 	 * <p>Implementations are also encouraged to return this value
 	 * from their {@code toString} method.
+	 *
+	 * <p>返回对此资源的描述，以便在使用该资源时用于错误输出。还鼓励实现从其 toString 方法返回此值。
+	 *
 	 * @see Object#toString()
 	 */
 	String getDescription();
