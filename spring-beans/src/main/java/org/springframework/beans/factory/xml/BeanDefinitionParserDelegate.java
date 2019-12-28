@@ -40,6 +40,8 @@ import java.util.*;
  * {@link BeanDefinitionParser BeanDefinitionParsers} or
  * {@link BeanDefinitionDecorator BeanDefinitionDecorators}.
  *
+ * <p>定义解析 {@link Element} 的各种方法
+ *
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -48,8 +50,6 @@ import java.util.*;
  * @since 2.0
  * @see ParserContext
  * @see DefaultBeanDefinitionDocumentReader
- *
- * 定义解析 Element 的各种方法
  */
 public class BeanDefinitionParserDelegate {
 

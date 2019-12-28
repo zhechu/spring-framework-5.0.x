@@ -24,11 +24,11 @@ import org.xml.sax.InputSource;
 /**
  * Strategy interface for loading an XML {@link Document}.
  *
+ * <p>定义从资源文件加载到转换为 {@link Document} 的功能
+ *
  * @author Rob Harrop
  * @since 2.0
  * @see DefaultDocumentLoader
- *
- * 定义从资源文件加载到转换为 Document 的功能
  */
 public interface DocumentLoader {
 

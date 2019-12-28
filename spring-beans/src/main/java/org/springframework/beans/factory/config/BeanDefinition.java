@@ -30,14 +30,15 @@ import org.springframework.lang.Nullable;
  * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer}
  * to introspect and modify property values and other bean metadata.
  *
+ * <p>承载 bean 定义的接口，有三种实现，{@link org.springframework.beans.factory.support.RootBeanDefinition}、
+ * {@link org.springframework.beans.factory.support.ChildBeanDefinition} 和 {@link org.springframework.beans.factory.support.GenericBeanDefinition}
+ *
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @since 19.03.2004
  * @see ConfigurableListableBeanFactory#getBeanDefinition
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
- *
- * 承载 bean 定义的接口，有三种实现，RootBeanDefinition、ChildBeanDefinition 和 GenericBeanDefinition
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 

@@ -57,7 +57,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see org.springframework.beans.factory.DisposableBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory
  *
- * 对接口 SingletonBeanRegistry 各函数的实现
+ * 对接口 SingletonBeanRegistry 各方法的实现
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 

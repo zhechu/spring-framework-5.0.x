@@ -41,6 +41,9 @@ import org.springframework.core.io.Resource;
  * an {@link XmlBeanDefinitionReader}.</b> The latter allows for reading from multiple XML
  * resources and is highly configurable in its actual XML parsing behavior.
  *
+ * <p>主要用于从 XML 文档中读取 {@link org.springframework.beans.factory.config.BeanDefinition}，
+ * 对于注册及获取 bean 都是父类实现
+ *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -54,6 +57,7 @@ import org.springframework.core.io.Resource;
 @SuppressWarnings({"serial", "all"})
 public class XmlBeanFactory extends DefaultListableBeanFactory {
 
+	/** 自定义 xml 读取器，实现了个性化的 {@link org.springframework.beans.factory.support.BeanDefinitionReader} 读取 */
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 
