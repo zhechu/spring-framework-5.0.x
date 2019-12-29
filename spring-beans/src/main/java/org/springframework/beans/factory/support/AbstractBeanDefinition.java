@@ -162,46 +162,79 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/** 是否作为被自动装配的首选者 */
 	private boolean primary = false;
 
+	/** 用于记录 Qualifier，对应子元素 qualifier */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
+	/** 允许访问非公开的构造器的方法，程序设置 */
 	private boolean nonPublicAccessAllowed = true;
 
+	/**
+	 * 是否以一种宽松的模式解析构造函数,默认为true,
+	 * 如果为false,则在如下情况
+	 * interface ITest{ }
+	 * class ITestImpl implements ITest{ };
+	 * class Main{
+	 *    Main(ITest i){ }
+	 *    Main(ITestImpl i){ }
+	 * }
+	 * 抛出异常,因为Spring无法准确定位哪个构造函数
+	 * 程序设置
+	 */
 	private boolean lenientConstructorResolution = true;
 
+	/** 对应 bean 属性 factory-bean */
 	@Nullable
 	private String factoryBeanName;
 
+	/** 对应 bean 属性 factory-method */
 	@Nullable
 	private String factoryMethodName;
 
+	/** 记录构造函数注入属性，对应 bean 属性 constructor-arg */
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	/** 普通属性集合 */
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
+	/** 方法重写的持有者，记录 lookup-method、replaced-method 元素 */
 	private MethodOverrides methodOverrides = new MethodOverrides();
 
+	/** 初始化方法，对应 bean 属性 init-method */
 	@Nullable
 	private String initMethodName;
 
+	/** 销毁方法，对应 bean 属性 destory-method */
 	@Nullable
 	private String destroyMethodName;
 
+	/** 是否执行 init-method，程序设置 */
 	private boolean enforceInitMethod = true;
 
+	/** 是否执行 destory-method，程序设置 */
 	private boolean enforceDestroyMethod = true;
 
+	/** 是否是用户定义的而不是应用程序本身定义的，创建 AOP 时为 true，程序设置 */
 	private boolean synthetic = false;
 
+	/**
+	 * 定义这个 bean 的应用
+	 * APPLICATION      :   用户
+	 * INFRASTRUCTURE   :   完全内部使用,与用户无关
+	 * SUPPORT          :   某些复杂配置的一部分
+	 * 程序设置
+	 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
+	/** bean 的描述信息 */
 	@Nullable
 	private String description;
 
+	/** 这个 bean 定义的资源 */
 	@Nullable
 	private Resource resource;
 
