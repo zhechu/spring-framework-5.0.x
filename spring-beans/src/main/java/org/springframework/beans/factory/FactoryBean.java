@@ -48,6 +48,10 @@ import org.springframework.lang.Nullable;
  * synchronization other than for purposes of lazy initialization within the
  * FactoryBean itself (or the like).
  *
+ * <p>一般情况下，通过反射机制利用 bean 的 class 属性指定实现类实例化 bean。在某些情况下，
+ * 实例化 bean 过程比较复杂，若按照传统的方式，则需在 <bean> 中提供大量的配置信息，配置方式
+ * 的灵活性是受限的。因此 Spring 提供此工厂类接口，用户可以通过实现该接口定制实例化 bean 的逻辑
+ *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 08.03.2003
@@ -70,6 +74,10 @@ public interface FactoryBean<T> {
 	 * will not throw a FactoryBeanNotInitializedException in this case anymore.
 	 * FactoryBean implementations are encouraged to throw
 	 * FactoryBeanNotInitializedException themselves now, as appropriate.
+	 *
+	 * <p>返回由 FactoryBean 创建的 bean 实例，若 isSingleton() 返回 true，则该实例
+	 * 会放到 Spring 容器中单实例缓存池中
+	 *
 	 * @return an instance of the bean (can be {@code null})
 	 * @throws Exception in case of creation errors
 	 * @see FactoryBeanNotInitializedException
@@ -92,6 +100,9 @@ public interface FactoryBean<T> {
 	 * <p><b>NOTE:</b> Autowiring will simply ignore FactoryBeans that return
 	 * {@code null} here. Therefore it is highly recommended to implement
 	 * this method properly, using the current state of the FactoryBean.
+	 *
+	 * <p>返回 FactoryBean 创建的 bean 类型
+	 *
 	 * @return the type of object that this FactoryBean creates,
 	 * or {@code null} if not known at the time of the call
 	 * @see ListableBeanFactory#getBeansOfType
