@@ -16,14 +16,6 @@
 
 package org.springframework.beans.factory.support;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
-
 import org.springframework.beans.BeanMetadataAttributeAccessor;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -36,6 +28,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Constructor;
+import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * Base class for concrete, full-fledged {@link BeanDefinition} classes,
@@ -140,22 +136,30 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Nullable
 	private volatile Object beanClass;
 
+	/** bean 的作用范围，对应 bean 属性 scope */
 	@Nullable
 	private String scope = SCOPE_DEFAULT;
 
+	/** 是否是抽象，对应 bean 属性 abstract */
 	private boolean abstractFlag = false;
 
+	/** 是否延迟加载，对应 bean 属性 lazy-init */
 	private boolean lazyInit = false;
 
+	/** 自动注入模式，对应 bean 属性 autowire */
 	private int autowireMode = AUTOWIRE_NO;
 
+	/** 依赖检查，Spring 3.0 后已弃用 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
+	/** 用来表示一个 bean 的实例化依靠另一个 bean 先实例化，对应 bean 属性 depend-on */
 	@Nullable
 	private String[] dependsOn;
 
+	/** 是否作为被自动装配的对象 */
 	private boolean autowireCandidate = true;
 
+	/** 是否作为被自动装配的首选者 */
 	private boolean primary = false;
 
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
