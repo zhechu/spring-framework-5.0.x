@@ -43,6 +43,8 @@ import org.springframework.util.Assert;
  * with an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
  * for more flexible context setup.</b>
  *
+ * <p>与 BeanFactory 一样，都是用于加载 Bean。但其功能更加丰富。
+ *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @see #getResource
@@ -139,6 +141,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 			throws BeansException {
 
 		super(parent);
+		// 设置配置路径
 		setConfigLocations(configLocations);
 		if (refresh) {
 			refresh();
