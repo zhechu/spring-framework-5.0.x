@@ -16,13 +16,13 @@
 
 package org.springframework.context.support;
 
-import java.util.Locale;
-
 import org.springframework.context.HierarchicalMessageSource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.lang.Nullable;
+
+import java.util.Locale;
 
 /**
  * Empty {@link MessageSource} that delegates all calls to the parent MessageSource.
@@ -30,6 +30,8 @@ import org.springframework.lang.Nullable;
  *
  * <p>Used as placeholder by AbstractApplicationContext, if the context doesn't
  * define its own MessageSource. Not intended for direct use in applications.
+ *
+ * <p>方便操作父 MessageSource 的代理类
  *
  * @author Juergen Hoeller
  * @since 1.1.5

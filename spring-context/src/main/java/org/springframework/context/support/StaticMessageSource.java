@@ -16,13 +16,13 @@
 
 package org.springframework.context.support;
 
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
+
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
 
 /**
  * Simple implementation of {@link org.springframework.context.MessageSource}
@@ -30,6 +30,8 @@ import org.springframework.util.Assert;
  * This MessageSource supports basic internationalization.
  *
  * <p>Intended for testing rather than for use in production systems.
+ *
+ * <p>允许通过编程的方式提供国际化信息，主要用于程序测试
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
