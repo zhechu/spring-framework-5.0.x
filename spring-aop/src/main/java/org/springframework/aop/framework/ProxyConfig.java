@@ -16,9 +16,9 @@
 
 package org.springframework.aop.framework;
 
-import java.io.Serializable;
-
 import org.springframework.util.Assert;
+
+import java.io.Serializable;
 
 /**
  * Convenience superclass for configuration used in creating proxies,
@@ -36,6 +36,7 @@ public class ProxyConfig implements Serializable {
 
 	private boolean proxyTargetClass = false;
 
+	/** 用于控制通过 CGLIB 创建的代理是否使用激进的优化策略 */
 	private boolean optimize = false;
 
 	boolean opaque = false;
