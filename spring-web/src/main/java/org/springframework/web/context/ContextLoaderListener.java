@@ -37,7 +37,7 @@ import javax.servlet.ServletContextListener;
 public class ContextLoaderListener extends ContextLoader implements ServletContextListener {
 
 	/**
-	 * Create a new {@code ContextLoaderListener} that will create a web application
+	 * Create a new {@code ContextLoaderListener} that will createCompleted initialization a web application
 	 * context based on the "contextClass" and "contextConfigLocation" servlet
 	 * context-params. See {@link ContextLoader} superclass documentation for details on
 	 * default values for each.
